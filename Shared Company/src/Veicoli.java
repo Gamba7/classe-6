@@ -1,140 +1,61 @@
-public abstract class  Veicoli {
-    private long id=1;
-    private double costoalminuto;
-    private Stato stato;
-    private Carburante carburante;
-    private TipoCarburante tipocarburante;
-    private String Targa;
-    private double latitudine;
-    private double longitudine;
+package SharedMobility2;
 
-    public Patente getPatenterichiesta() {
-        return patenterichiesta;
-    }
-
-    public void setPatenterichiesta(Patente patenterichiesta) {
-        this.patenterichiesta = patenterichiesta;
-    }
-
-    private Patente patenterichiesta;
-
-
-    public Veicoli(double costoalminuto, Stato stato, Carburante carburante, TipoCarburante tipocarburante, String Targa,double latitudine,double longitudine) //AUTO, MOTO, FURGONI
-    {
-        setId(id);
-        id++;
-        setCostoalminuto(costoalminuto);
-        setStato(stato);
-        setCarburante(carburante);
-        setTipoCarburante(tipocarburante);
-        setTarga(Targa);
-        setLatitudine(latitudine);
-        setLongitudine(longitudine);
-    }
-
-    public Veicoli(double costoalminuto, Stato stato, Carburante carburante, String targa,double latitudine,double longitudine) //SCOOTER MONOPATTINO
-    {
-        setId(id);
-        id++;
-        setCostoalminuto(costoalminuto);
-        setStato(stato);
-        setCarburante(carburante);
-        setTarga(targa);
-        setLatitudine(latitudine);
-        setLongitudine(longitudine);
-    }
-
-    public Veicoli(double costoalminuto, Stato stato,double latitudine,double longitudine) //BICICLETTA
-    {
-        setId(id);
-        id++;
-        setCostoalminuto(costoalminuto);
-        setStato(stato);
-        setLatitudine(latitudine);
-        setLongitudine(longitudine);
-    }
-    public double getLatitudine() {
-        return latitudine;
-    }
-
-    public void setLatitudine(double latitudine) {
-        this.latitudine = latitudine;
-    }
-
-    public double getLongitudine() {
-        return longitudine;
-    }
-
-    public void setLongitudine(double longitudine) {
-        this.longitudine = longitudine;
-    }
-
-    public String getTarga() {
-        return Targa;
-    }
-
-    public void setTarga(String targa) {
-        Targa = targa;
-    }
-
-
-
-    public double getCostoalminuto() {
-        return costoalminuto;
-    }
-
-    public void setCostoalminuto(double costoalminuto) {
-        this.costoalminuto = costoalminuto;
-    }
-
-
-    public TipoCarburante getTipoCarburante() {
-        return tipocarburante;
-    }
-
-    public void setTipoCarburante(TipoCarburante tipocarburante)
-    {
-        this.tipocarburante = tipocarburante;
-    }
-
-    public Carburante getCarburante()
-    {
-        return carburante;
-    }
-
-    public void setCarburante(Carburante carburante)
-    {
-        this.carburante = carburante;
-    }
-
-    public long getId()
-    {
-        return id;
-    }
-
-    public void setId(long id)
-    {
-        this.id = id;
-    }
-
-
-    public Stato getStato() {
-        return stato;
-    }
-
-    public void setStato(Stato stato)
-    {
-        this.stato = stato;
-    }
-
-}
-enum Stato
+public abstract class Veicoli
 {
-    Disponibile, Occupato;
+    private String idveicolo;
+    private Stato disponibilita;
+    private Coordinate coordinateveicolo;
+    private double prezzoalminuto;
+    private TIPOGUASTOIMM tipoguasto;
+    private String marca;
+    private String modello;
+    private double kmpercorsi;
+
+    public Veicoli (String marca,String modello,double prezzoalminuto,Coordinate coordinateveicolo)
+    {
+        setMarca(marca);
+        setModello(modello);
+        setPrezzoalminuto(prezzoalminuto);
+        setCoordinateveicolo(coordinateveicolo);
+        setDisponibilita(Stato.DISPONIBILE);
+        setKmpercorsi(0);
+        setTipoguasto(TIPOGUASTOIMM.NESSUNGUASTO);
+
+    }
+
+    public Coordinate getCoordinateveicolo() { return coordinateveicolo; }
+
+    public void setCoordinateveicolo(Coordinate coordinateveicolo) { this.coordinateveicolo = coordinateveicolo; }
+
+    public String getIdveicolo() { return idveicolo; }
+
+    public void setIdveicolo(String idveicolo) { this.idveicolo = idveicolo; }
+
+    public Stato getDisponibilita() { return disponibilita; }
+
+    public void setDisponibilita(Stato disponibilita) { this.disponibilita = disponibilita; }
+
+    public double getPrezzoalminuto() { return prezzoalminuto; }
+
+    public void setPrezzoalminuto(double prezzoalminuto) { this.prezzoalminuto = prezzoalminuto; }
+
+    public TIPOGUASTOIMM getTipoguasto() { return tipoguasto; }
+
+    public void setTipoguasto(TIPOGUASTOIMM tipoguasto) { this.tipoguasto = tipoguasto; }
+
+    public String getMarca() { return marca; }
+
+    public void setMarca(String marca) { this.marca = marca; }
+
+    public String getModello() { return modello; }
+
+    public void setModello(String modello) { this.modello = modello; }
+
+    public double getKmpercorsi() { return kmpercorsi; }
+
+    public void setKmpercorsi(double kmpercorsi) { this.kmpercorsi = kmpercorsi; }
 }
 
-enum Carburante
-{
-    c100, c70, c50, c30, c0;
-}
-enum TipoCarburante {BENZINA, ELETTRICO}
+enum Stato {DISPONIBILE,OCCUPATO,GUASTO}
+enum TIPOGUASTOIMM {NESSUNGUASTO,MOTORE,PNEUMATICI,BATTERIA,CARROZZERIA,IMPIANTOELETTRICO}
+

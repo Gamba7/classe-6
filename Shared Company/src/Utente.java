@@ -1,39 +1,137 @@
+package SharedMobility2;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
-
-
-public class Utente
+public class Utente implements GeneraID
 {
     private String nome;
     private String cognome;
-    private String data_nascita;
-    private String codice_fiscale;
-    private int credito_carta;
+    private String codicefiscale;
+    private String ID;
+    private String datadinascita;
     private boolean maggiorenne;
-    private Patente[] patente;
-    private boolean casco;
-    private double latitudine;
-    private double longitudine;
+    private Coordinate coordinate;
+    private String IDnollegiata;
+    private double credito;
+    private boolean fiducia ;
+    private List<Patente> patente;
 
-    public double getLatitudine() {
-        return latitudine;
+    public Utente(String nome, String cognome, String codicefiscale, String datadinascita, Coordinate coordinate) {
+        setNome(nome);
+        setCognome(cognome);
+        setCodicefiscale(codicefiscale);
+        setID(GeneraIdentificativo());
+        setDatadinascita(datadinascita);
+        setCoordinate(coordinate);
+        setIDAUTOno();
+        setCredito(0);
+        setFiducia(true);
     }
 
-    public void setLatitudine(double latitudine) {
-        this.latitudine = latitudine;
+    public void Aggiungipatente(Patente nuovapatente)
+    {
+        patente.add(nuovapatente);
     }
 
-    public double getLongitudine() {
-        return longitudine;
+    public List<Patente> getPatente() {
+        return patente;
     }
 
-    public void setLongitudine(double longitudine) {
-        this.longitudine = longitudine;
+    public void setPatente(List<Patente> patente) {
+        this.patente = patente;
     }
 
+    public double getCredito() {
+        return credito;
+    }
+
+    public void setCredito(double credito) {
+        this.credito = credito;
+    }
+    public void addCredito(double credito)
+    {
+        setCredito(getCredito()+credito);
+    }
+
+    public boolean isFiducia() {
+        return fiducia;
+    }
+
+    public void setFiducia(boolean fiducia) {
+        this.fiducia = fiducia;
+    }
+
+    public String getIDnollegiata() {
+        return IDnollegiata;
+    }
+    public void setIDAUTOno() {
+        this.IDnollegiata = "NOAUTO";
+    }
+
+    public void setIDnollegiata(String IDnollegiata) {
+        this.IDnollegiata = IDnollegiata;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
+
+    public String getCodicefiscale() {
+        return codicefiscale;
+    }
+
+    public void setCodicefiscale(String codicefiscale) {
+        this.codicefiscale = codicefiscale;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public String getDatadinascita() {
+        return datadinascita;
+    }
+
+    public void setDatadinascita(String datadinascita)
+    {
+        this.datadinascita = datadinascita;
+        Date d = null;
+        try
+        {
+            DateFormat formatoData = DateFormat.getDateInstance(DateFormat.SHORT, Locale.ITALY);
+            formatoData.setLenient(false);
+            d = formatoData.parse(datadinascita);
+        } catch (ParseException e)
+        {
+            System.out.println("Formato data non valido.");
+        }
+        Date c = new Date();
+        int x = c.getYear();
+        int y = d.getYear();
+        if ((x-y)>=18) setMaggiorenne(true);
+        else setMaggiorenne(false);
+    }
 
 
     public boolean isMaggiorenne() {
@@ -44,74 +142,27 @@ public class Utente
         this.maggiorenne = maggiorenne;
     }
 
-    public Patente[] getPatente() {
-        return patente;
+    public Coordinate getCoordinate() {
+        return coordinate;
     }
 
-    public void setPatente(Patente[] patente) {
-        this.patente = patente;
+    public void setCoordinate(Coordinate coordinate) {
+        this.coordinate = coordinate;
     }
 
-    public boolean isCasco() {
-        return casco;
-    }
-
-    public void setCasco(boolean casco) {
-        this.casco = casco;
-    }
-
-    public String getNome() {return nome; }
-    public void setNome(String nome) { this.nome = nome; }
-    public String getCognome() {return cognome;}
-    public void setCognome(String cognome) { this.cognome = cognome; }
-    public String getData_nascita() { return data_nascita; }
-    public void setData_nascita(String data_nascita) { this.data_nascita = data_nascita; }
-    public String getCodice_fiscale() { return codice_fiscale; }
-    public void setCodice_fiscale(String codice_fiscale) { this.codice_fiscale = codice_fiscale; }
-    public int getCredito_carta() { return credito_carta; }
-    public void setCredito_carta(int credito_carta) { this.credito_carta = credito_carta; }
-
-    public Utente (String nome, String cognome, String codice_fiscale,String data_nascita, Patente[] patente, boolean casco,double latitudine,double longitudine)
+    @Override
+    public String GeneraIdentificativo()
     {
-        setNome(nome);
-        setCognome(cognome);
-        setData_nascita(data_nascita);
-        setCodice_fiscale(codice_fiscale);
-        setCredito_carta(0);
-        setMaggiorenne(controlloeta());
-        setPatente(patente);
-        setCasco(casco);
-        setLatitudine(latitudine);
-        setLongitudine(longitudine);
-
+        Random rnd = new Random();
+        String s = new String();
+        s=s.concat(getNome().substring(0,2));
+        s=s.concat(getCognome().substring(0,2));
+        s=s.concat(getCodicefiscale().substring(5,7));
+        s=s.concat(String.valueOf(rnd.nextInt(9)));
+        s=s.concat(String.valueOf(rnd.nextInt(9)));
+        s=s.concat(String.valueOf(rnd.nextInt(9)));
+        s=s.concat(String.valueOf(rnd.nextInt(9)));
+        s=s.toUpperCase();
+        return s;
     }
-
-    public boolean controlloeta ()
-            {
-            Date d = null;
-            //si procura la data sotto forma di una stringa nel formato SHORT
-                //converte la stringa della data in un oggetto di classe Date
-            try{
-                DateFormat formatoData = DateFormat.getDateInstance(DateFormat.SHORT, Locale.ITALY);
-                //imposta che i calcoli di conversione della data siano rigorosi
-                formatoData.setLenient(false);
-                d = formatoData.parse(getData_nascita());
-            } catch (ParseException e) {
-                System.out.println("Formato data non valido.");
-            }
-            //visualizza la data non formattata (sfruttando implicitamente il metodo toString dell'oggetto)
-            Date c = new Date();
-            int x = c.getYear();
-            int y = d.getYear();
-            if ((x-y)>=18) return true;
-            return false;
-            }
-
-    public static void main(String[] args) {
-        Utente io = new Utente("Giuseppe","Di Giovannantonio","DDDD","02/09/1993", new Patente[]{Patente.PATENTEA, Patente.PATENTEB1},true,35.86,98.66);
-    }
-    }
-
-    enum Patente {PATENTEA, PATENTEB1, PATENTEB2}
-
-
+}

@@ -2,26 +2,12 @@ package SharedMobility2;
 
 import java.util.Random;
 
-public class Bicicletta extends Veicoli implements GeneraID
+public class MonopattinoElett extends VeicoliNonImmatricolatiConMotore implements GeneraID
 {
-    private boolean cascobici;
 
-    public Bicicletta(String marca, String modello, double prezzoalminuto, Coordinate coordinateveicolo) {
-        super(marca, modello, prezzoalminuto, coordinateveicolo);
-        setCascobici(true);
+    public MonopattinoElett(String marca, String modello, double prezzoalminuto, double consumo, int capacitabatteria, Coordinate coordinateveicolo) {
+        super(marca, modello, prezzoalminuto, consumo, capacitabatteria, coordinateveicolo);
         super.setIdveicolo(GeneraIdentificativo());
-    }
-
-    public boolean isCascobici() {
-        return cascobici;
-    }
-
-    public void setCascobici(boolean cascobici) {
-        this.cascobici = cascobici;
-    }
-    public void CascobiciSmarrito()
-    {
-        setCascobici(false);
     }
 
     @Override
@@ -30,7 +16,7 @@ public class Bicicletta extends Veicoli implements GeneraID
         String s = new String();
         s=s.concat(getMarca().substring(0,2));
         s=s.concat(getModello().substring(0,2));
-        s=s.concat("TU");
+        s=s.concat(getTipomotore().name().substring(0,2));
         s=s.concat(String.valueOf(rnd.nextInt(9)));
         s=s.concat(String.valueOf(rnd.nextInt(9)));
         s=s.concat(String.valueOf(rnd.nextInt(9)));
