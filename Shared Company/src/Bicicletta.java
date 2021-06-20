@@ -38,4 +38,9 @@ public class Bicicletta extends Veicoli implements GeneraID
         s=s.toUpperCase();
         return s;
     }
+    @Override
+    public void Aggiungikm(double km)
+    {
+        setKmpercorsi(getKmpercorsi()+km);
+    }
 }

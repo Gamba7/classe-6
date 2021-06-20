@@ -78,6 +78,14 @@ public abstract class  VeicoliImmatricolati extends Veicoli
     public void setTarga(String targa) {
         Targa = targa;
     }
+
+    @Override
+    public void Aggiungikm(double km)
+    {
+        setKmpercorsi(getKmpercorsi()+km);
+        setEnergia((int) ((100*(getCapacitaenergiamax()-km*getConsumo()))/getCapacitaenergiamax()));
+        if (energia<20) setDisponibilita(Stato.DARICARICARE);
+    }
 }
 enum Patente{PATENTEA,PATENTEB,PATENTEB2,PATENTEC}
 enum Tipomotore{ELETTRICO,BENZINA,IBRIDO,DIESEL,GPL}

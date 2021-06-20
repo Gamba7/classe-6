@@ -58,4 +58,11 @@ public abstract class VeicoliNonImmatricolatiConMotore extends Veicoli
     {
         setCascoleggero(false);
     }
+    @Override
+    public void Aggiungikm(double km)
+    {
+        setKmpercorsi(getKmpercorsi()+km);
+        setPercBatteria((int) ((100*(getCapacitabatteria()-km*getConsumo()))/getCapacitabatteria()));
+        if (getPercBatteria()<20) setDisponibilita(Stato.DARICARICARE);
+    }
 }

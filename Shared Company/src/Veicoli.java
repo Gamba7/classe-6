@@ -54,8 +54,11 @@ public abstract class Veicoli
     public double getKmpercorsi() { return kmpercorsi; }
 
     public void setKmpercorsi(double kmpercorsi) { this.kmpercorsi = kmpercorsi; }
+
+    public void Aggiungikm(double km){}
+
 }
 
-enum Stato {DISPONIBILE,OCCUPATO,GUASTO}
+enum Stato {DISPONIBILE,OCCUPATO,GUASTO,DARICARICARE}
 enum TIPOGUASTOIMM {NESSUNGUASTO,MOTORE,PNEUMATICI,BATTERIA,CARROZZERIA,IMPIANTOELETTRICO}
 

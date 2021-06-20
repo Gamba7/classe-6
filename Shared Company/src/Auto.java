@@ -17,6 +17,7 @@ public class Auto extends VeicoliImmatricolati implements GeneraID
         setCapacitaenergiamax(capacitaenergiamax);
         super.setPatenterichiesta(Patente.PATENTEB);
         super.setIdveicolo(GeneraIdentificativo());
+        setCambio(cambio);
     }
 
     public double getCapacitaenergiamax() {

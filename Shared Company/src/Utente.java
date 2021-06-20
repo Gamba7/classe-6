@@ -21,7 +21,8 @@ public class Utente implements GeneraID
     private boolean fiducia ;
     private List<Patente> patente;
 
-    public Utente(String nome, String cognome, String codicefiscale, String datadinascita, Coordinate coordinate) {
+    public Utente(String nome, String cognome, String codicefiscale, String datadinascita, Coordinate coordinate)
+    {
         setNome(nome);
         setCognome(cognome);
         setCodicefiscale(codicefiscale);
