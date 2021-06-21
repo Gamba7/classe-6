@@ -17,7 +17,7 @@ public abstract class  VeicoliImmatricolati extends Veicoli
         setTipomotore(tipomotore);
         setEnergia(100);
         setAssicurazione(true);
-        setCapacitaenergiamax(capacitaenergiamax);
+        setCapacitaenergiamax(capacitaenergiamax);  //serbatoio carburante o capacità batteria
         setTarga(targa);
 
     }
@@ -60,7 +60,7 @@ public abstract class  VeicoliImmatricolati extends Veicoli
     }
 
     public void setConsumo(double consumo) {
-        this.consumo = consumo;
+        this.consumo = Math.abs(consumo);
     }
 
     public boolean isAssicurazione() {

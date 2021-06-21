@@ -32,7 +32,7 @@ public abstract class VeicoliNonImmatricolatiConMotore extends Veicoli
     }
 
     public void setConsumo(double consumo) {
-        this.consumo = consumo;
+        this.consumo = Math.abs(consumo);
     }
 
     public int getCapacitabatteria() {

@@ -52,7 +52,7 @@ public class Utente implements GeneraID
     }
 
     public void setCredito(double credito) {
-        this.credito = credito;
+        this.credito = Math.abs(credito);
     }
     public void addCredito(double credito)
     {

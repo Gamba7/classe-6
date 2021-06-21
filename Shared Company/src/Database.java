@@ -192,6 +192,7 @@ public class Database
     }
     public void Prenota(Utente utente,Veicoli veicolo,int minuti)
     {
+        if (!utente.isMaggiorenne()) { System.out.println("Devi avere almeno 18 anni");return;}
         if (!utente.getIDnollegiata().equals("NOAUTO")){ System.out.println("L'utente ha gia un noleggio in corso");return;}
         if (!listautenti.contains(utente)){ System.out.println("Utente non valido"); return;}
         if (!listaveicoli.contains(veicolo)) {System.out.println("Veicolo non valido"); return;}
