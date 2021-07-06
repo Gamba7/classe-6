@@ -24,7 +24,7 @@ PLUS 🏍: gestire, per ogni persona, la lista dei figli ed implementare un meto
 
 public class UfficioAnagrafe {
     Set<Persona> listaPersone = new HashSet<>();
-    
+
 
     public void inserisciPersona(Persona p) {
         listaPersone.add(p);
@@ -58,17 +58,15 @@ public class UfficioAnagrafe {
 
     }
 
-    public Set<Persona> getFigli(String nome){
+    public Set<String> getFigli(String nome){
         Set<String> figli = new HashSet<>();
         for (Persona p : listaPersone) {
-                if (p.getNome().equals(nome)){
-                    for (String f : p.getFigli()){
-                        figli.add(nome);
-                    }
-                }
+            if (p.getNome().equals(nome)){
+                figli.addAll(p.getFigli());
+            }
         }
 
-        return listaPersone;
+        return figli;
     }
 
     public static void main(String[] args) {

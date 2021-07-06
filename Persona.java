@@ -1,12 +1,12 @@
 import java.util.Set;
 
 public class Persona {
-   private String nome;
-   private String cognome;
-   private int eta;
-   private String codiceFiscale;
-   private String indirizzo;
-   private Set<String> figli;
+    private String nome;
+    private String cognome;
+    private int eta;
+    private String codiceFiscale;
+    private String indirizzo;
+    private Set<String> figli;
 
     public Persona(String nome, String cognome, int eta, String codiceFiscale, String indirizzo,Set<String> figli) {
         setNome(nome);
